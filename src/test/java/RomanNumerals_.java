@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 public class RomanNumerals_ {
 
 
+    public static final String[] TENTHS = {"X", "XX", "XXX"};
     private final int number;
     private final String value;
     private final Class exceptionClass;
@@ -37,8 +38,7 @@ public class RomanNumerals_ {
 
     private String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
-        if(number == 10) return "X";
-        if(number == 20) return "XX";
+        if(number >= 10) return TENTHS[(number /10) -1] ;
 
         return ONES[number-1];
     }
@@ -55,7 +55,7 @@ public class RomanNumerals_ {
 
                 {10, "X", null},
                 {20, "XX", null},
-                //{30, "XXX", null},
+                {30, "XXX", null},
                 //{100, "C", null},
                 //{200, "CC", null},
                 //{300, "CCC", null},
