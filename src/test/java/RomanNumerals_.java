@@ -38,7 +38,10 @@ public class RomanNumerals_ {
 
     private String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
-        if(number >= 10) return TENTHS[(number /10) -1] ;
+        if(number >= 10) return TENTHS[(number /10)-1] ;
+        if(number == 100) return "C";
+
+
 
         return ONES[number-1];
     }
@@ -56,7 +59,7 @@ public class RomanNumerals_ {
                 {10, "X", null},
                 {20, "XX", null},
                 {30, "XXX", null},
-                //{100, "C", null},
+                {100, "C", null},
                 //{200, "CC", null},
                 //{300, "CCC", null},
                 //{1000, "M", null},
