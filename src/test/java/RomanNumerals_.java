@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 @RunWith(org.junit.runners.Parameterized.class)
 public class RomanNumerals_ {
 
+
     private final int number;
     private final String value;
     private final Class exceptionClass;
@@ -28,9 +29,12 @@ public class RomanNumerals_ {
         }
     }
 
+    public static final int MIN = 0;
+    public static final int MAX = 4000;
+
     private String toRoman(int number){
-        if (number <= 0) throw new IllegalParameterException();
-        return number ==1 ? "I" : "II";
+        if (number <= MIN || number >= MAX) throw new IllegalParameterException();
+        return number == 1 ? "I" : "II";
     }
 
     @Parameterized.Parameters
@@ -39,7 +43,13 @@ public class RomanNumerals_ {
                 {-1, null, IllegalParameterException.class},
                 {0, null, IllegalParameterException.class},
                 {1, "I", null},
-                {2, "II", null}
+                {2, "II", null},
+
+
+                {4000, null, IllegalParameterException.class},
+                {5000, null, IllegalParameterException.class}
+
+
 
 
         };
