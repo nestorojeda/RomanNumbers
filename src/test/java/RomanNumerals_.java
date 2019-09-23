@@ -24,18 +24,19 @@ public class RomanNumerals_ {
             assertThat(toRoman(number)).isEqualTo(this.value);
             assertNull(exceptionClass);
         }catch (Exception e){
-            assertTrue(exceptionClass != null);
+            assertNotNull(exceptionClass);
         }
     }
 
     private String toRoman(int number){
-        if (number == 0) throw new IllegalParameterException();
+        if (number <= 0) throw new IllegalParameterException();
         return number ==1 ? "I" : "II";
     }
 
     @Parameterized.Parameters
     public static Object[][] cases(){
         return new Object[][]{
+                {-1, null, IllegalParameterException.class},
                 {0, null, IllegalParameterException.class},
                 {1, "I", null},
                 {2, "II", null}
