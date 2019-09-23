@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.*;
 
+import es.ulpgc.RomanNumerals;
+
 @RunWith(org.junit.runners.Parameterized.class)
 public class RomanNumerals_ {
 
@@ -23,52 +25,18 @@ public class RomanNumerals_ {
     @Test
     public void execute(){
         try {
-            assertThat(toRoman(number)).isEqualTo(this.value);
+            assertThat(RomanNumerals.toRoman(number)).isEqualTo(this.value);
             assertNull(exceptionClass);
         }catch (Exception e){
             assertNotNull(exceptionClass);
         }
     }
 
-    public static final int MIN = 0;
-    public static final int MAX = 4000;
-    public static final String[] ONES = {"I", "II", "III"};
-    public static final String[] TENS = {"X", "XX", "XXX"};
-    public static final String[] HUNDREDS = {"C", "CC", "CCC"};
-    public static final String[] THOUSANDS = {"M", "MM", "MMM"};
-
-
-    private String times (int offset, String[] constants) {
-        if(offset == 0) return "";
-        return constants[offset-1];
-    }
-
-    private String toRoman(int number){
-        if (number <= MIN || number >= MAX) throw new IllegalParameterException();
-        if(number >= 1000) return times(thousands(number), THOUSANDS);
-        return  times(hundreds(number), HUNDREDS) + times(tens(number), TENS) + times(ones(number), ONES);
-    }
-
-    private int ones(int number){
-        return number % 10;
-    }
-    private int tens(int number) {
-        return (number % 100) / 10;
-    }
-
-    private int hundreds(int number) {
-        return (number % 1000) / 100;
-    }
-
-    private int thousands(int number) {
-        return number/1000;
-    }
-
     @Parameterized.Parameters
     public static Object[][] cases(){
         return new Object[][]{
-                {-1, null, IllegalParameterException.class},
-                {0, null, IllegalParameterException.class},
+                {-1, null, RomanNumerals.IllegalParameterException.class},
+                {0, null, RomanNumerals.IllegalParameterException.class},
 
                 {1, "I", null},
                 {2, "II", null},
@@ -89,8 +57,8 @@ public class RomanNumerals_ {
                 {2000, "MM", null},
                 {3000, "MMM", null},
 
-                {4000, null, IllegalParameterException.class},
-                {5000, null, IllegalParameterException.class}
+                {4000, null, RomanNumerals.IllegalParameterException.class},
+                {5000, null, RomanNumerals.IllegalParameterException.class}
 
 
 
@@ -98,6 +66,4 @@ public class RomanNumerals_ {
         };
     }
 
-    private static class IllegalParameterException extends RuntimeException {
-    }
 }
