@@ -29,15 +29,16 @@ public class RomanNumerals_ {
     }
 
     private String toRoman(int number){
-        if(number == 1) return "I";
-        throw new IllegalParameterException();
+        if (number == 0) throw new IllegalParameterException();
+        return number ==1 ? "I" : "II";
     }
 
     @Parameterized.Parameters
     public static Object[][] cases(){
         return new Object[][]{
                 {0, null, IllegalParameterException.class},
-                {1, "I", null}
+                {1, "I", null},
+                {2, "II", null}
 
 
         };
