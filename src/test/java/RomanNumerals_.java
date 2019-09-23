@@ -31,10 +31,12 @@ public class RomanNumerals_ {
 
     public static final int MIN = 0;
     public static final int MAX = 4000;
+    public static final String[] ONES = {"I", "II", "III"};
+
 
     private String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
-        return number == 1 ? "I" : "II";
+        return ONES[number-1];
     }
 
     @Parameterized.Parameters
@@ -44,6 +46,7 @@ public class RomanNumerals_ {
                 {0, null, IllegalParameterException.class},
                 {1, "I", null},
                 {2, "II", null},
+                {3, "III", null},
 
 
                 {4000, null, IllegalParameterException.class},
