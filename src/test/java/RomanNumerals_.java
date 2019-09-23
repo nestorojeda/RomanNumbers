@@ -35,18 +35,31 @@ public class RomanNumerals_ {
     public static final String[] ONES = {"I", "II", "III"};
     public static final String[] TENS = {"X", "XX", "XXX"};
     public static final String[] HUNDREDS = {"C", "CC", "CCC"};
+    public static final String[] THOUSANDS = {"M", "MM", "MMM"};
 
+
+    private String times (int offset, String[] constants) {
+        return constants[offset-1];
+    }
 
     private String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
-        if(number >= 100) return HUNDREDS[(number/100)-1];
-        if(number >= 10) return TENS[(number /10)-1] ;
-
-
-
-
-
+        if(number >= 1000) return times(thousands(number), THOUSANDS);
+        if(number >= 100) return times(hundreds(number), HUNDREDS);
+        if(number >= 10) return times(tens(number), TENS);
         return ONES[number-1];
+    }
+
+    private int tens(int number) {
+        return number /10;
+    }
+
+    private int hundreds(int number) {
+        return number/100;
+    }
+
+    private int thousands(int number) {
+        return number/1000;
     }
 
     @Parameterized.Parameters
@@ -65,9 +78,10 @@ public class RomanNumerals_ {
                 {100, "C", null},
                 {200, "CC", null},
                 {300, "CCC", null},
-                //{1000, "M", null},
-                //{2000, "MM", null},
-                //{3000, "MMM", null},
+
+                {1000, "M", null},
+                {2000, "MM", null},
+                {3000, "MMM", null},
 
                 {4000, null, IllegalParameterException.class},
                 {5000, null, IllegalParameterException.class}
