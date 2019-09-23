@@ -39,23 +39,25 @@ public class RomanNumerals_ {
 
 
     private String times (int offset, String[] constants) {
+        if(offset == 0) return "";
         return constants[offset-1];
     }
 
     private String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
         if(number >= 1000) return times(thousands(number), THOUSANDS);
-        if(number >= 100) return times(hundreds(number), HUNDREDS);
-        if(number >= 10) return times(tens(number), TENS);
-        return ONES[number-1];
+        return  times(hundreds(number), HUNDREDS) + times(tens(number), TENS) + times(ones(number), ONES);
     }
 
+    private int ones(int number){
+        return number % 10;
+    }
     private int tens(int number) {
-        return number /10;
+        return (number % 100) / 10;
     }
 
     private int hundreds(int number) {
-        return number/100;
+        return (number % 1000) / 100;
     }
 
     private int thousands(int number) {
@@ -73,13 +75,17 @@ public class RomanNumerals_ {
                 {3, "III", null},
 
                 {10, "X", null},
+                {11, "XI", null},
                 {20, "XX", null},
                 {30, "XXX", null},
                 {100, "C", null},
+                {110, "CX", null},
+
                 {200, "CC", null},
                 {300, "CCC", null},
 
                 {1000, "M", null},
+
                 {2000, "MM", null},
                 {3000, "MMM", null},
 
