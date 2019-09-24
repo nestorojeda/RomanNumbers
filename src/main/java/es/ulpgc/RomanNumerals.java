@@ -9,9 +9,6 @@ public class RomanNumerals {
     private static final String[] HUNDREDS = {"C", "CC", "CCC"};
     private static final String[] THOUSANDS = {"M", "MM", "MMM"};
 
-    public RomanNumerals(){
-
-    }
 
     private static String times (int offset, String[] constants) {
         if(offset == 0) return "";
@@ -30,14 +27,10 @@ public class RomanNumerals {
     private static int tens(int number) {
         return (number % 100) / 10;
     }
-
     private static int hundreds(int number) {
         return (number % 1000) / 100;
     }
-
-    private static int thousands(int number) {
-        return number/1000;
-    }
+    private static int thousands(int number) { return number/1000; }
 
     public static class IllegalParameterException extends RuntimeException {
     }
