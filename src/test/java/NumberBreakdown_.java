@@ -5,9 +5,6 @@ import org.junit.runners.Parameterized;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-
-
 @RunWith(org.junit.runners.Parameterized.class)
 public class NumberBreakdown_ {
 
@@ -52,7 +49,10 @@ public class NumberBreakdown_ {
                 {31, new int[][]{{3,1}, {1, 0}}},
                 {39, new int[][]{{3,1}, {9, 0}}},
 
-                {110, new int[][]{{1,2}, {1, 1}}}
+                {110, new int[][]{{1,2}, {1, 1}}},
+                {101, new int[][]{{1,2}, {1,0}}}
+
+
 
         };
     }

@@ -32,8 +32,7 @@ public class RomanNumerals {
     }
     private static int thousands(int number) { return number/1000; }
 
-    public static class IllegalParameterException extends RuntimeException {
-    }
+    public static class IllegalParameterException extends RuntimeException {}
 
 
 }
