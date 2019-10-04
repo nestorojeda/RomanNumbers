@@ -19,13 +19,13 @@ public class NumberBreakdown_ {
 
     @Test
     public void execute(){
-        assertThat(new NumberBreakdown().decompose(number)).isEqualTo(value);
+        assertThat(new NumberBreakdown(number).breakdown()).isEqualTo(value);
     }
 
     @Parameterized.Parameters
     public static Object[][] cases(){
         return new Object[][]{
-                {0, new int[][]{}},
+                {0, null},
                 {1, new int[][]{{1,0}}},
                 {2, new int[][]{{2,0}}},
                 {3, new int[][]{{3,0}}},
@@ -42,6 +42,7 @@ public class NumberBreakdown_ {
                 {1000, new int[][]{{1,3}}},
                 {2000, new int[][]{{2,3}}},
                 {3000, new int[][]{{3,3}}},
+
 
                 {11, new int[][]{{1,1}, {1, 0}}},
                 {21, new int[][]{{2,1}, {1, 0}}},

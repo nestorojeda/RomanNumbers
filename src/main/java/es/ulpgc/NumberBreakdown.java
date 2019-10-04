@@ -1,33 +1,44 @@
 package es.ulpgc;
 
-import java.util.ArrayList;
+import java.util.stream.Stream;
+import static java.lang.Integer.parseInt;
+import static java.util.stream.IntStream.iterate;
 
-import java.util.Collections;
+public class NumberBreakdown{
 
-public class NumberBreakdown {
+    private final int number;
 
+    public NumberBreakdown(int number) {
+        this.number = number;
+    }
 
-    public int[][] decompose(int number){
-        if(number == 0) return new int[][]{};
-        int length = (int) (Math.log10(number) + 1);
+    public int[][] breakdown(){
+        if(number <= 0 || number >= 4000) return null;
+        return stream()
+                .map(this::tuple)
+                .filter(this::isNotZero)
+                .toArray(int[][]::new);
+    }
 
-        ArrayList<int[]> list = new ArrayList<int[]>();
+    private String number() {
+        return String.valueOf(number);
+    }
 
-        for (int i = 0; i < length; i++) {
-            if(number % 10 != 0) list.add(new int[]{number%10, i});
-            number = number /10;
-        }
+    private boolean isNotZero(int[] tuple) {
+        return tuple[0] != 0;
+    }
 
-        Collections.reverse(list);
+    private int[] tuple(Integer i) {
+        return new int[] {
+                parseInt(number().substring(i,i+1)),
+                number().length() - 1 - i
+        };
+    }
 
-        int [][] res = new int[list.size()][2];
-
-        for (int i = 0; i < list.size(); i++) {
-            res[i] = list.get(i);
-        }
-
-        return res;
-
+    private Stream<Integer> stream() {
+        return iterate(0, l -> l + 1)
+                .limit(number().length())
+                .boxed();
     }
 
 
