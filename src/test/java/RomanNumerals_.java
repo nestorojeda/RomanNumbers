@@ -25,7 +25,7 @@ public class RomanNumerals_ {
     @Test
     public void execute(){
         try {
-            assertThat(RomanNumerals.toRoman(number)).isEqualTo(this.value);
+            assertThat(new RomanNumerals().toRoman(number)).isEqualTo(this.value);
             assertNull(exceptionClass);
         }catch (Exception e){
             assertNotNull(exceptionClass);
@@ -59,11 +59,8 @@ public class RomanNumerals_ {
 
                 {4000, null, RomanNumerals.IllegalParameterException.class},
                 {5000, null, RomanNumerals.IllegalParameterException.class}
-
-
-
-
         };
     }
+
 
 }

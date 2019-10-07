@@ -9,13 +9,20 @@ public class RomanNumerals {
     private static final String[] HUNDREDS = {"C", "CC", "CCC"};
     private static final String[] THOUSANDS = {"M", "MM", "MMM"};
 
+    public RomanNumerals(){}
+
+    public RomanNumerals(int number){
+        String roman = toRoman(number);
+    }
+
+
 
     private static String times (int offset, String[] constants) {
         if(offset == 0) return "";
         return constants[offset-1];
     }
 
-    public static String toRoman(int number){
+    public String toRoman(int number){
         if (number <= MIN || number >= MAX) throw new IllegalParameterException();
         if(number >= 1000) return times(thousands(number), THOUSANDS);
         return  times(hundreds(number), HUNDREDS) + times(tens(number), TENS) + times(ones(number), ONES);
